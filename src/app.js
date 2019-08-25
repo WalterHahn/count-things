@@ -8,7 +8,6 @@ var h1 = createElement('h1', { innerText: 'count-things' });
 var h2 = createElement('h2', { innerText: 'by Walter F. Hahn' });
 
 var appContainer  = createElement('div', { id: "appContainer" });
-
 var formContainer = createElement('div', { id: "formContainer" });
 
 var nameInput = createElement('input', { type: "text" });
@@ -22,16 +21,16 @@ var addCounterBtn = createElement('button', {
   }
 });
 
-formContainer.appendChild(nameInput);
-formContainer.appendChild(addCounterBtn);
-
 var countersContainer = createElement('div', { id: "countersContainer" });
 
-appContainer.appendChild(h1);
-appContainer.appendChild(h2);
+formContainer.appendChildren([ nameInput, addCounterBtn ])
 
-appContainer.appendChild(formContainer);
-appContainer.appendChild(countersContainer);
+appContainer.appendChildren([
+  h1,
+  h2,
+  formContainer,
+  countersContainer
+]);
 
 document.body.appendChild(appContainer);
 

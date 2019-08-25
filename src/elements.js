@@ -4,5 +4,10 @@ export const createElement = (tag, options = {}) => {
   for (var o in options)
     el[o] = options[o];
 
+  el.appendChildren = (elements) => {
+    for (var i in elements)
+      el.appendChild(elements[i]);
+  }
+
   return el;
 }
