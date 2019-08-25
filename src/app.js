@@ -5,7 +5,7 @@ import './app.css';
 var counters = new Counters();
 
 var h1 = createElement('h1', { innerText: 'count-things' });
-var h2 = createElement('h2', { innerText: 'by Walter. F Hahn' });
+var h2 = createElement('h2', { innerText: 'by Walter F. Hahn' });
 
 var appContainer  = createElement('div', { id: "appContainer" });
 
