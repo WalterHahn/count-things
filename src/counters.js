@@ -13,18 +13,14 @@ export class Counters {
       this.counters[key] = new Counter(data[key], this);
   }
 
-  update() {
-    this.save();
-    this.render();
-  }
-
   setContainer(el) {
     this.container = el;
   }
 
   add(name) {
     this.counters[name] = new Counter({ name, value: 0 }, this);
-    this.update();
+    this.save();
+    this.render();
   }
 
   getCount() {
@@ -48,12 +44,14 @@ export class Counters {
 
   deleteAll() {
     this.counters = {};
-    this.update();
+    this.save();
+    this.render();
   }
 
   del(name) {
     delete this.counters[name];
-    this.update();
+    this.save();
+    this.render();
   }
 
   render() {
@@ -93,17 +91,36 @@ class Counter {
 
   incr(value) {
     this.value += value;
-    this.parent.update();
+    this.update();
   }
 
   decr(value) {
     this.value -= value;
-    this.parent.update();
+    this.update();
+  }
+
+  update() {
+    this.valueElement.innerText = this.value;
+    this.parent.save();
+  }
+
+  assignRandomColor(e) {
+    this.color = this.randomColor();
+    if (e.target.classList.contains('counter')) {
+      e.target.style = `background-color: rgb(${this.color.join(',')});`;
+      this.parent.save();
+    }
+  }
+
+  del() {
+    if (confirm(`Remove ${this.name}?`))
+      this.parent.del(this.name)
   }
 
   render() {
     const container = createElement('div', {
       className: 'counter',
+      onclick: this.assignRandomColor.bind(this),
       style: `background-color: rgb(${this.color.join(',')});`
     });
 
@@ -113,7 +130,7 @@ class Counter {
     const delBtn = createElement('span', {
       className: "delBtn",
       innerText: "🗑️",
-      onclick: () => { this.parent.del(this.name) }
+      onclick: this.del.bind(this)
     })
 
     const name = createElement('span', {
@@ -145,6 +162,8 @@ class Counter {
 
     container.appendChild(left);
     container.appendChild(right);
+
+    this.valueElement = value;
 
     return container;
   }
