@@ -10,7 +10,7 @@ export class Counters {
     this.counters = {};
 
     for (var key in data)
-      this.counters[key] = new Counter(key, parseInt(data[key].value), this);
+      this.counters[key] = new Counter(data[key], this);
   }
 
   update() {
@@ -23,8 +23,12 @@ export class Counters {
   }
 
   add(name) {
-    this.counters[name] = new Counter(name, 0, this);
+    this.counters[name] = new Counter({ name, value: 0 }, this);
     this.update();
+  }
+
+  getCount() {
+    return Object.keys(this.counters).length;
   }
 
   getAll() {
@@ -62,16 +66,28 @@ export class Counters {
 }
 
 class Counter {
-  constructor(name, value, parent) {
-    this.name = name;
-    this.value = value || 0;
+  constructor(config, parent) {
+    this.name = config.name;
+    this.value = parseInt(config.value) || 0;
+    this.color = config.color || this.randomColor()
     this.parent = parent;
+  }
+
+  randomColor() {
+    var high = 200;
+    var low = 32;
+    return [
+      Math.floor(Math.random() * (high - low)) + low,
+      Math.floor(Math.random() * (high - low)) + low,
+      Math.floor(Math.random() * (high - low)) + low
+    ]
   }
 
   getData() {
     return {
       name: this.name,
-      value: this.value
+      value: this.value,
+      color: this.color
     }
   }
 
@@ -87,7 +103,8 @@ class Counter {
 
   render() {
     const container = createElement('div', {
-      className: 'counter'
+      className: 'counter',
+      style: `background-color: rgb(${this.color.join(',')});`
     });
 
     const left = createElement('div', { className: "left" });
