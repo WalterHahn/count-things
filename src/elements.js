@@ -1,9 +1,8 @@
-export const createElement = (tag, options) => {
+export const createElement = (tag, options = {}) => {
   var el = document.createElement(tag);
 
-  el.className = options.className || "";
-  el.innerText = options.innerText || null;
-  el.onclick = options.onclick || null;
+  for (var o in options)
+    el[o] = options[o];
 
   return el;
 }
