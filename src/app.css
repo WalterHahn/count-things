@@ -13,6 +13,75 @@ h2 {
   margin-top: 2px;
 }
 
+button {
+  border: 2px solid #eee;
+  background-color: #222;
+  color: #eee;
+  cursor: pointer;
+}
+
+#appContainer {
+  margin: 0px auto;
+  max-width: 512px;
+}
+
+#formContainer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding: 8px;
+}
+
+#formContainer input[type="text"] {
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  flex-grow: 1;
+  font-size: 16px;
+  margin-right: 8px;
+  padding: 4px;
+}
+
+#formContainer button {
+  padding: 4px;
+}
+
+.delBtn {
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+#countersContainer .counter {
+  align-items: center;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  font-size: 22px;
+  display: flex;
+  justify-content: space-between;
+  margin: 8px;
+  padding: 8px;
+}
+
+.right {
+  align-items: center;
+  display: flex;
+}
+
+.counter .name {
+  margin-right: 4px;
+}
+
+.counter .value {
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0px 8px;
+}
+
+.counter button {
+  margin-left: 4px;
+  width: 32px;
+  height: 32px;
+}
+
 .tidbit {
   margin-left: 16px;
   font-size: 14px;
