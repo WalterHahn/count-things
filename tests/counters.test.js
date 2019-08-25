@@ -47,7 +47,9 @@ test('render, save, and load counter', () => {
 });
 
 test('increment and decrement counter', () => {
+  var div = document.createElement('div');
   var counters = new Counters();
+  counters.setContainer(div);
   counters.add('test');
   var counter = counters.get('test');
   expect(counter.value).toBe(0);
