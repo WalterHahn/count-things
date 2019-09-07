@@ -21,3 +21,7 @@ Open `dist/index.html` in your browser.
 ## Test
 
 **count-things** uses the Jest testing framework. Run `npm run test` to execute all tests.
+
+## Demo
+
+[https://walterhahn.github.io/count-things/](https://walterhahn.github.io/count-things/)
