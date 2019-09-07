@@ -105,8 +105,8 @@ class Counter {
   }
 
   assignRandomColor(e) {
-    this.color = this.randomColor();
     if (e.target.classList.contains('counter')) {
+      this.color = this.randomColor();
       e.target.style = `background-color: rgb(${this.color.join(',')});`;
       this.parent.save();
     }
